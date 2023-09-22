@@ -22,7 +22,7 @@
       </button>
       <span>todo-app</span>
       <span class="example-spacer"></span>
-      <mat-slide-toggle>Dark-mode</mat-slide-toggle>
+      <mat-slide-toggle [formControl]="toggleControl()">Dark-mode</mat-slide-toggle>
     </mat-toolbar>
     <app-todo></app-todo>
   </mat-sidenav-content>

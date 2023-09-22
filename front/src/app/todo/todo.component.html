@@ -49,10 +49,10 @@
           <td class="col-md-4">{{todo.name}}</td>
           <td class="col-md-4">{{todo.description}}</td>
           <td class="col-md-2">
-            <button class="m-2" mat-mini-fab color="primary" aria-label= "Example icon button with a vertical three dot icon" (click)="handleEdit(todo)">
+            <button class="m-2" mat-icon-button color="primary" aria-label= "Example icon button with a vertical three dot icon" (click)="handleEdit(todo)">
               <mat-icon>edit</mat-icon>
             </button>
-            <button class="ml-2" mat-mini-fab color="warn" aria-label="Example icon button with a vertical three dot icon" (click)="deleteTodo(todo.id!)">
+            <button class="ml-2" mat-icon-button color="warn" aria-label="Example icon button with a vertical three dot icon" (click)="deleteTodo(todo.id!)">
               <mat-icon>delete</mat-icon>
             </button>
           </td>
