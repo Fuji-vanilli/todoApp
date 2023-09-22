@@ -1,0 +1,83 @@
+
+<div class="container mt-2">
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>Create Todo</mat-card-title>
+      </mat-card-header>
+      <form [formGroup]="todoForm" (ngSubmit)="onSubmit()"  >
+        <table class="table" [cellSpacing]="0">
+          <tr>
+            <td>
+              <mat-form-field class="custom-field">
+                <mat-label>Todo name</mat-label>
+                <input matInput formControlName="name"/>
+                <mat-error>Required name</mat-error>
+              </mat-form-field>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <mat-form-field class="custom-field">
+                <mat-label>Todo description</mat-label>
+                <textarea matInput formControlName="description"></textarea>
+                <mat-error>Required description</mat-error>
+              </mat-form-field>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <button class="m-2" type="submit" mat-raised-button color="primary">{{ isEditMode ? "update" : "create"}}</button>
+            </td>
+          </tr>
+        </table>
+      </form>
+    </mat-card>
+    <table class="align-middle table mt-5">
+      <thead>
+        <tr>
+          <th scope="col">Status</th>
+          <th scope="col">Name</th>
+          <th scope="col">Description</th>
+          <th scope="col">Actions</th>
+        </tr>
+      </thead>
+      <tbody class="table-group-divider">
+        <tr *ngFor="let todo of todos">
+          <td class="col-md-1">
+            <mat-checkbox name="completed" color="accent" [ngModel]="todo.completed" (change)="patchTodoStatus(todo.id!, !todo.completed)"></mat-checkbox>
+          </td>
+          <td class="col-md-4">{{todo.name}}</td>
+          <td class="col-md-4">{{todo.description}}</td>
+          <td class="col-md-2">
+            <button class="m-2" mat-mini-fab color="primary" aria-label= "Example icon button with a vertical three dot icon" (click)="handleEdit(todo)">
+              <mat-icon>edit</mat-icon>
+            </button>
+            <button class="ml-2" mat-mini-fab color="warn" aria-label="Example icon button with a vertical three dot icon" (click)="deleteTodo(todo.id!)">
+              <mat-icon>delete</mat-icon>
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <nav aria-label="Page navigation example" class="p-5 flex-center">
+      <ul class="pagination">
+        <ng-container>
+          <li class="page-item">
+            <a class="page-link" style="cursor: pointer;"
+              (click)="getTodoWithPagination(pageNum-1)" 
+              [class.disabled]="pageNum === 0">Previous</a>
+          </li>
+          <li class="page-item" *ngFor="let tempPage  of generatedPages">
+            <a class="page-link"  
+              [class.active]="pageNum === tempPage.value"
+              (click)="getTodoWithPagination(tempPage.value)"> {{ tempPage.displayValue }} </a>
+          </li>
+          <li class="page-item">
+            <a class="page-link" 
+              (click)="getTodoWithPagination(pageNum+1)"
+              [class.disabled]="pageNum === generatedPages.length-1">Next</a>
+          </li>
+        </ng-container>
+      </ul>
+    </nav>
+  </div>
