@@ -5,25 +5,26 @@
         <mat-card-title>Create Todo</mat-card-title>
       </mat-card-header>
       <form [formGroup]="todoForm" (ngSubmit)="onSubmit()"  >
+
+        <div class="col">
+            <div class="row">
+                <mat-form-field class="custom-field">
+                    <mat-label>Todo name</mat-label>
+                    <input matInput formControlName="name"/>
+                    <mat-error>Required name</mat-error>
+                  </mat-form-field>
+            </div>
+        </div>
+        <div class="col">
+            <div class="row">
+                <mat-form-field class="custom-field">
+                    <mat-label>Todo description</mat-label>
+                    <textarea matInput formControlName="description"></textarea>
+                    <mat-error>Required description</mat-error>
+                  </mat-form-field>
+            </div>
+        </div>
         <table class="table" [cellSpacing]="0">
-          <tr>
-            <td>
-              <mat-form-field class="custom-field">
-                <mat-label>Todo name</mat-label>
-                <input matInput formControlName="name"/>
-                <mat-error>Required name</mat-error>
-              </mat-form-field>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <mat-form-field class="custom-field">
-                <mat-label>Todo description</mat-label>
-                <textarea matInput formControlName="description"></textarea>
-                <mat-error>Required description</mat-error>
-              </mat-form-field>
-            </td>
-          </tr>
           <tr>
             <td>
               <button class="m-2" type="submit" mat-raised-button color="primary">{{ isEditMode ? "update" : "create"}}</button>
@@ -32,6 +33,7 @@
         </table>
       </form>
     </mat-card>
+      
     <table class="align-middle table mt-5">
       <thead>
         <tr>
